@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mi primer Juego</title>
+    <style>
+        #juego {
+            width: 480px;
+            height: 320px;
+            position: relative;
+        }
+        #canvas {
+            background-color: aquamarine;
+            border: 1px solid;
+        }
+        #modal {
+            position: absolute;
+            top: 0px;
+            left: 0px;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        #boton {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+        }
+    </style>
+</head>
+<body>
+    <h1>Jugando Ando para MARLON </h1>
+    <div id="juego">
+        <canvas id="canvas" width="480" height="320"></canvas>
+      <div id="modal"><button id="boton">Play</button></div>
+    </div>
+    <script>
+        var canvas = document.getElementById("canvas");
+        var ctx = canvas.getContext("2d");
+        var vidas = 3;
+        var puntaje = 0;
+        var puntajeActual = 0;
+        var nivel = 0;
+        var boton = document.getElementById("boton");
+        boton.addEventListener("click", iniciarJuego);
+        document.addEventListener("keyup", function () {
+            if (event.keyCode == 32 || event.keyCode == 13) {
+                iniciarJuego();
+            };
+        });
+//ADD: mesa
+        var mw =  70;
+        var mh = 10;
+        var mx = (canvas.width/2)- (mw/2);
+        var my = 300;
+        var derecha = false;
+        var izquierda = false;
+        var velocidad = 7;
+            
+        function dibujarMesa() {
+            ctx.fillStyle = "red";
+            ctx.fillRect(mx, my, mw, mh);
+
+        };
+        
+        function moverMesa() {
+            if (izquierda && mx < canvas.width - mw){
+                mx += velocidad;
+            }
+            if (derecha && mx> 0){
+                mx -=velocidad;
+            }
+            
+        };
+        document.addEventListener("keydown", function () {
+            if(event.keyCode == 39){
+                izquierda = true;
+            }
+            if(event.keyCode == 37){
+                derecha = true;
+            }
+        });
+        document.addEventListener("keyup", function () {
+            if(event.keyCode == 39){
+                izquierda = false;
+            }
+            if(event.keyCode == 37){
+                derecha = false;
+            }
+        });
+        
+//ADD: fin de la mesa
+// pelota
+        var px = 240;
+        var py = 160;
+        var r = 10;
+        var pxDir= 2;
+        var pyDir = 2;
+
+        function dibujarPelota() {
+            ctx.fillStyle = "blue";
+            ctx.beginPath();
+            ctx.arc(px, py, r, 0, Math.PI*2);
+            ctx.fill();
+        }
+
+        function moverPelota() {
+            px += pxDir;
+            py += pyDir;
+            
+            
+        }
+// fin pelota
+
+// BLOQUES
+        var bloques = [];
+        var infoBloques= {
+            ancho : 75,
+            columnas : 5,
+            filas :3,
+            alto : 20,
+            margen : 10,
+            top : 30,
+            left : 30,
+        };
+
+        function crearBloques() {
+            for (var c =0; c < infoBloques.columnas; c++){
+                bloques[c] = [];
+                 for ( var f= 0; f< infoBloques.filas; f++){
+                     bloqueX = infoBloques.left + (c*(infoBloques.ancho + infoBloques.margen));
+                     bloqueY = infoBloques.top + (f * (infoBloques.alto + infoBloques.margen));
+                     bloques[c][f] = {
+                         x: bloqueX,
+                         y: bloqueY,
+                         status: 1};
+                 }
+            }
+        }
+        crearBloques();
+
+        function dibujarBloques() {
+            
+            for (var c =0; c < infoBloques.columnas; c++){
+                for ( var f= 0; f< infoBloques.filas; f++){
+                     if (bloques[c][f].status == 1){
+                        ctx.fillStyle = "green";
+                        ctx.fillRect(bloques[c][f].x, bloques[c][f].y, infoBloques.ancho, infoBloques.alto);
+                     }
+                     };
+                 }
+            }
+        
+        function colisionBloques() {
+            for (var c =0; c < infoBloques.columnas; c++){
+                for ( var f= 0; f< infoBloques.filas; f++){
+                    var bloqueActual = bloques[c][f];
+                     if (bloqueActual.status == 1){
+                         if (px> bloqueActual.x && 
+                         px < (bloqueActual.x + infoBloques.ancho) &&
+                         py > bloqueActual.y && 
+                         py < (bloqueActual.y + infoBloques.alto)) {
+                             bloqueActual.status = 0;
+                             pyDir = -pyDir;
+                             puntajeActual ++;
+                             if (puntajeActual == infoBloques.columnas * infoBloques.filas){
+                                 aumentarNivel();
+                             }
+                     }
+                     };
+                 }
+        }}
+// fin de BLOQUES
+
+        function aumentarNivel() {
+            alert("felicidades");
+            crearBloques();
+            nuevoNivel();
+            nivel ++;
+            puntajeA = puntaje;
+            puntajeA = 0;
+            
+        };
+        function nuevoNivel() {
+            px = 240;
+            py = 160; 
+            pxDir = Math.abs(pxDir);
+            pyDir = Math.abs(pyDir);
+            pxDir ++;
+            pyDir ++;
+        }
+        function dibujarInfo() {
+            ctx.fillStyle = "black";
+            ctx.fillText("Vidas Restantes: " + vidas, 5, 15);
+            ctx.fillText("nivel: "+ nivel, 430, 15);
+        }
+
+        
+
+        function dibujar() {
+            ctx.clearRect(0,0, 480, 320);
+            dibujarPelota();
+            dibujarMesa();
+            dibujarInfo();
+            dibujarBloques();
+            
+        };
+
+        function actualizar() {
+            moverMesa();
+            moverPelota();
+        };
+
+        function colision() {
+            /*Si la posición de la pelota horizontal es menor
+             o igual que el ancho de la pelota 
+             (básicamente pared izquierda)
+            // ó es mayor que el ancho del canvas 
+            sacando el ancho de la pelota (pared derecha), 
+            cambio la dirección.*/
+            if (px <= r || px >= canvas.width - r) {
+                pxDir *= -1;
+            };
+            /* Si la posición de la pelota en vertical es menor
+             o igual que el largo de la pelota (pared superior), 
+            // cambio la dirección.*/
+            if (py <= 0) {
+                pyDir *= -1;
+            };
+            /*/ Si la posición de la pelota en vertical es mayor
+             o igual que el largo del canvas sacando el largo
+             de la pelota (pared superior), 
+             verifico si está en la posición de la mesita de luz. Nah mentira, de la raqueta.
+            // En vez de 28, va r, pero si sumas altura de pelota, 
+            mas altura de mesa, más la altura a la que flota, queda mejor.*/
+            if (py >= canvas.height - 28) {
+                /*/ Pelota horizontal es mayor que el comienzo de la raqueta, 
+                Y es menor que el final de la misma, cambio la dirección.*/
+                if (px > mx && px < (mx + mw)) {
+                    pyDir *= -1;
+                } else {
+                    pyDir *=-1;
+                    perderVida();
+                }
+            }
+        }
+
+        function perderVida() {
+            if (vidas>0){
+                alert("Perdiste Vida");
+                vidas --;
+            }else {
+                alert ("Se Acabó")
+             finJuego();   
+            }
+        }
+
+        function animacion() {
+            actualizar();
+            colision();
+            colisionBloques();
+            dibujar();
+            requestAnimationFrame(animacion);
+        }
+
+        function iniciarJuego() {
+            var modal= document.getElementById("modal");
+            modal.style.display = "none";
+            animacion();
+        }
+
+        function finJuego() {
+            document.location.reload();
+        
+        }
+    </script>
+   
+</body>
+</html>
+
+ <!-- PENDIENTES: tiene error para aumentar al segundo nivel, 
+y debo mejorar el rendimiento del juego -->
+
+
+
+
+
+
+

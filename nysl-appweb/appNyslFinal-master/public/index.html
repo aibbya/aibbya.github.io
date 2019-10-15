@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <title>NYSL Aibby</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel='stylesheet' type='text/css' media='screen' href='style.css'>
+  <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
+  <link rel="icon" type="image/png" href="img/nysl_logo.png">
+  <link rel="shortcut icon" sizes="196x196" href="img/nysl_logo.png">
+</head>
+
+<body id="contenedor">
+  <section id="index">
+    <header class="header">
+      <div>
+        <h1 id="titulo"> NYSL </h1>
+      </div>
+    </header>
+    <h2 id="subtitulo"> Northside Youth Soccer League </h2>
+    <div id="botonFechas" class=" col-6 mx-auto d-block boton botonPpal">
+      <a class="noLink" href="#fechas">
+        <p>FECHAS</p>
+        <img class="icons" src="img/calendario2.png" alt="fechas">
+      </a>
+    </div>
+    <div id="botonLugar" class="col-6 mx-auto d-block boton botonPpal">
+      <a class="noLink" href="#sedes">
+        <p>LUGAR </p>
+        <img class="icons" src="img/mapa2.png" alt="sedes">
+      </a>
+    </div>
+    <div id="botonEquipo" class="col-6 mx-auto d-block boton botonPpal">
+      <a class="noLink" href="#equipos">
+        <p>EQUIPOS </p>
+        <img class="icons" src="img/equipo2.png" alt="equipos">
+      </a>
+    </div>
+    <div class="text-center container">
+      <img id="logoPpal" src="img/nysl_logo.png" alt="logo">
+    </div>
+  </section> <!-- FIN menu ppal-->
+  <section id="fechas" class="mostrar">
+    <header class="container-fluid header">
+      <div class="row justify-content-between">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            Login
+          </button>
+          <!-- Navbar links -->
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <a class="dropdown-item" href="#">Conectarse</a>
+            <a class="dropdown-item" href="#">Desconectarse</a>
+
+          </div>
+        </div>
+        <h1 class="col-4" id="titulo"> NYSL </h1>
+        <div> <a href="#index" class="col-4 "><img class="logo " src="img/nysl_logo.png" alt="logo"></a></div>
+      </div>
+    </header>
+    <h2 id="subtitulo" class="col text-center"> Calendario </h2>
+    <div id="meses">
+      <!-- BOTONES DE LOS MESES -->
+      <div class="row m-0 container justify-content-around">
+        <div id="botonseptiembre" class="col-5 boton botonMes botonesIzq " data-toggle="collapse" href="#septiembre"
+          aria-expanded="false" aria-controls="septiembre">
+          <div class="">
+            <p class="tituloBoton">SEPTIEMBRE</p>
+            <img class="icons" src="img/Septiembre.png" alt="fechas">
+          </div>
+        </div>
+        <div id="botonSep" class="col-5 boton botonMes botonesDer " data-toggle="collapse" href="#octubre"
+          aria-expanded="false" aria-controls="octubre">
+          <div class="">
+            <p>OCTUBRE</p>
+            <img class="icons" src="img/OCTUBRE.png" alt="sedes">
+          </div>
+        </div>
+      </div> <!-- FIN BOTONES -->
+      <!-- MES septiembre -->
+      <div class="meses collapse " id="septiembre" data-parent="#meses" aria-labelledby="botonseptiembre">
+        <!-- <h3 data-toggle="collapse" data-target=".saturday1" aria-expanded="false" aria-controls="juego1 juego2"
+          class="dias">1st Saturday</h3>
+        <div class="collapse offset-1 saturday1 " id="juego1">
+          <h4 data-toggle="collapse" href="#s1J1" aria-expanded="false" aria-controls="s1J1"> JUEGO 1
+            del dia </h4>
+          <p class="juego collapse" id="s1J1">horario // sede <a class="irSedes" href="#sedes"> (Ver Sedes) </a>
+          </p>
+        </div>
+        <div class="collapse offset-1 saturday1" id="juego2">
+          <h4 data-toggle="collapse" href="#s1J2" aria-expanded="false" aria-controls="s1J2">JUEGO 2
+            del dia</h4>
+          <p class="juego collapse" id="s1J2">horario // sede <a class="irSedes" href="#sedes"> (Ver Sedes) </a></p>
+        </div>
+        <h3 class="dias">Sabado 2</h3>
+        <h3 class="dias">Sabado 3</h3> -->
+
+      </div>
+      <!-- MES SEPTIEMBRE -->
+      <div class=" meses collapse" id="octubre" data-parent="#meses" aria-labelledby="botonSep">
+        <h3 data-toggle="collapse" data-target=".saturday1" aria-expanded="false" aria-controls="juego1 juego2"
+          class="dias">1st Saturday</h3>
+
+        <div class="collapse offset-1 saturday1 " id="juego1">
+          <h4 data-toggle="collapse" href="#s1J1" aria-expanded="false" aria-controls="s1J1"> JUEGO 1
+            del dia </h4>
+          <p class="juego collapse" id="s1J1">horario // Sede <a class="irSedes" href="#sedes"> (Ver Sedes) </a></p>
+        </div>
+        <div class="collapse offset-1 saturday1" id="juego2">
+          <h4 data-toggle="collapse" href="#s1J2" aria-expanded="false" role="button" aria-controls="s1J2">JUEGO 2
+            del dia</h4>
+          <p class="juego collapse" id="s1J2">horario // Sede <a class="irSedes" href="#sedes"> (Ver Sedes) </a></p>
+        </div>
+      </div>
+    </div> <!-- FIN DE MESES -->
+  </section>
+  <!--Fin fechas-->
+  <section id="sedes">
+    <header class="container-fluid header">
+      <div class="row justify-content-end">
+        <h1 class="col-6" id="titulo"> NYSL </h1>
+        <div> <a href="#index" class="col-3 "><img class="logo " src="img/nysl_logo.png" alt="logo"></a></div>
+      </div>
+    </header>
+    <h2 id="subtitulo"> Sedes </h2>
+    <div id="locations">
+    </div>
+  </section>
+  <!--Fin Sedes-->
+  <section id="equipos">
+    <header class="container-fluid header">
+      <div class="row justify-content-end">
+        <h1 class="col-6" id="titulo"> NYSL </h1>
+        <div> <a href="#index" class="col-3 "><img class="logo " src="img/nysl_logo.png" alt="logo"></a></div>
+      </div>
+    </header>
+    <h2 id="subtitulo"> Equipos </h2>
+    <div id="teams">
+    </div>
+  </section>
+  <!--Fin Equipos-->
+  <section id="foros">
+    <header class="container-fluid header">
+      <div class="row justify-content-between">
+        <img class="iconBack" src="img/sol1.png" alt="atras">
+
+        <h1 class="col-4" id="titulo"> NYSL </h1>
+        <div> <a href="#index" class="col-4 "><img class="logo " src="img/nysl_logo.png" alt="logo"></a></div>
+      </div>
+      </div>
+    </header>
+    <div class="container">
+
+      <!-- Si no está conectado, te pide que te conectes. -->
+      <div class="col col-sm-10 col-md-6 col-lg-4 mx-auto p-0">
+        <button id="sign-in-button" class="btn shadow-sm mt-2 w-100">Conectarse</button>
+        <button id="sign-out-button" class="btn shadow-sm mt-2 w-100 hide">Desconectarse</button>
+      </div>
+
+      <!-- Crear post. -->
+      <div id="crear-post" class="border border-light rounded col col-sm-10 col-md-6 col-lg-4 mt-2 hide mx-auto">
+        <div class="mt-1">
+          <h4 class="mx-auto text-center pb-1">
+            Añadir nuevo tema
+          </h4>
+        </div>
+        <form>
+
+          <div class="form-group">
+            <label for="usr">Titulo:</label>
+            <input type="text" class="form-control" id="new-post-title">
+          </div>
+          <div class="form-group">
+            <label for="comment">Contenido:</label>
+            <textarea class="form-control" rows="2" id="new-post-message"></textarea>
+          </div>
+          <button type="submit" class="btn" id='add-post-btn'>Agregar</button>
+
+        </form>
+      </div>
+      <!-- Todos los temas y comentarios. -->
+      <div id="post-container" class="col col-sm-10 col-md-6 col-lg-4 mx-auto p-0">
+
+        <!-- TODOS LOS POST Y COMENTARIOS -->
+        <div id="recent-posts-list">
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+  <!--Fin Foros-->
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  <script src="datos.js"></script>
+  <script>
+    // document.addEventListener('DOMContentLoaded', function () {
+    //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+    //   // // The Firebase SDK is initialized and available here!
+    //   //
+    //   // firebase.auth().onAuthStateChanged(user => { });
+    //   // firebase.database().ref('/path/to/ref').on('value', snapshot => { });
+    //   // firebase.messaging().requestPermission().then(() => { });
+    //   // firebase.storage().ref('/path/to/ref').getDownloadURL().then(() => { });
+    //   //
+    //   // // 🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥🔥
+
+    //   try {
+    //     let app = firebase.app();
+    //     let features = ['auth', 'database', 'messaging', 'storage'].filter(feature => typeof app[feature] ===
+    //       'function');
+    //     document.getElementById('load').innerHTML = `Firebase SDK loaded with ${features.join(', ')}`;
+    //   } catch (e) {
+    //     console.error(e);
+    //     document.getElementById('load').innerHTML = 'Error loading the Firebase SDK, check the console.';
+    //   }
+    // });
+  </script>
+
+  <!-- update the version number as needed -->
+  <script defer src="/__/firebase/6.3.4/firebase-app.js"></script>
+  <!-- include only the Firebase features as you need -->
+  <script defer src="/__/firebase/6.3.4/firebase-auth.js"></script>
+  <script defer src="/__/firebase/6.3.4/firebase-database.js"></script>
+  <!-- initialize the SDK after all desired features are loaded -->
+  <script defer src="/__/firebase/init.js"></script>
+
+  <script src="main.js"></script>
+  <script src="foro.js"></script>
+
+
+</body>
+
+</html>
